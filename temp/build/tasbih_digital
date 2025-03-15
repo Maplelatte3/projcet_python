@@ -1,0 +1,41 @@
+import tkinter as tk
+from tkinter import ttk
+
+class TasbihDigital:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Tasbih Digital")
+
+        self.count = 0
+        self.selected_tasbih = tk.StringVar(value="Subhanallah")
+
+        # Label untuk menampilkan jumlah hitungan
+        self.label_count = tk.Label(root, text=str(self.count), font=("Helvetica", 48))
+        self.label_count.pack(pady=20)
+
+        # Dropdown untuk memilih kalimat tasbih
+        self.tasbih_options = ["Subhanallah", "Alhamdulillah", "Allahu Akbar", "Astaghfirullah", "La ilaha illallah"]
+        self.tasbih_combobox = ttk.Combobox(root, textvariable=self.selected_tasbih, values=self.tasbih_options, font=("Helvetica", 24))
+        self.tasbih_combobox.pack(pady=10)
+
+        # Tombol untuk menambah hitungan
+        self.button_increment = tk.Button(root, text="Hitung", command=self.increment_count, font=("Helvetica", 24))
+        self.button_increment.pack(pady=10)
+
+        # Tombol untuk mereset hitungan
+        self.button_reset = tk.Button(root, text="Reset", command=self.reset_count, font=("Helvetica", 24))
+        self.button_reset.pack(pady=10)
+
+    def increment_count(self):
+        self.count += 1
+        self.label_count.config(text=str(self.count))
+
+    def reset_count(self):
+        self.count = 0
+        self.label_count.config(text=str(self.count))
+
+# Membuat jendela utama
+if __name__ == "__main__":
+    root = tk.Tk()
+    tasbih = TasbihDigital(root)
+    root.mainloop()
